@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/v4.css" >
+    <title>云短信开发指南</title>
+</head>
+
+<body>
+    <div id="page">
+        <div id="title">云短信开发指南
+        </div>
+        <p></p>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p><span>发布时间</span></p>
+                    </td>
+                    <td>
+                        <p><span >版本</span></p>
+                    </td>
+                    <td>
+                        <p>修订人</p>
+                    </td>
+                    <td>
+                        <p>变更摘要</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>2020-05-28</p>
+                    </td>
+                    <td>
+                        <p>1.0</p>
+                    </td>
+                    <td>
+                        <p>郑维君</p>
+                    </td>
+                    <td>
+                        <p></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>2020-07-28</p>
+                    </td>
+                    <td>
+                        <p>1.1</p>
+                    </td>
+                    <td>
+                        <p>关宏新</p>
+                    </td>
+                    <td>
+                        <p>1、增加实际提交接口地址域名</p>
+                        <p>2、新增4.7、4.8、4.9章节内容</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>2020-08-25</p>
+                    </td>
+                    <td>
+                        <p>1.2</p>
+                    </td>
+                    <td>
+                        <p>郑维君</p>
+                    </td>
+                    <td>
+                        <p>修复导出word格式时部分内容由于格式不支持导致丢失的问题</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>2020-08-28</p>
+                    </td>
+                    <td>
+                        <p>1.3</p>
+                    </td>
+                    <td>
+                        <p>郑维君</p>
+                    </td>
+                    <td>
+                        <p>1、统一修正msgId为msgid</p>
+                        <p>2、增加spId术语</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>2021-04-12</p>
+                    </td>
+                    <td>
+                        <p>1.4</p>
+                    </td>
+                    <td>
+                        <p>夏帅</p>
+                    </td>
+                    <td>
+                        <p>增加定时短信字段sendTime</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p></p>
+        <h1>1、概述</h1>
+        <h2>1.1 目的</h2>
+        <p>提供对接短信发送平台HTTP/HTTPS协议的统一规范，便于客户侧进行接口的对接开发</p>
+        <h2>1.2 范围</h2>
+        <p>平台对外提供的HTTP/HTTPS协议短信下发接口，以及状态、上行的推送和主动获取接口</p>
+        <h2>1.3 术语</h2>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>术语</p>
+                    </td>
+                    <td>
+                        <p>英文</p>
+                    </td>
+                    <td>
+                        <p>中文</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>HTTP</p>
+                    </td>
+                    <td>
+                        <p><span>Hyper Text Transfer
+                                Protocol</span></p>
+                    </td>
+                    <td>
+                        <p><span>超文本传输协议</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>HTTPS</p>
+                    </td>
+                    <td>
+                        <p><span>Secure Hypertext
+                                Transfer Protocol</span></p>
+                    </td>
+                    <td>
+                        <p><span>安全超文本传输协议</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>JSON</p>
+                    </td>
+                    <td>
+                        <p><span>JavaScript Object
+                                Notation</span></p>
+                    </td>
+                    <td>
+                        <p><span>一种轻量级的数据交换格式</span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>spId</p>
+                    </td>
+                    <td>
+                        <p>Service Provider Id</p>
+                    </td>
+                    <td>
+                        <p>我方提供的发送账号的唯一标识</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>2、约束</h1>
+        <ul>
+            <li>
+                所有接口均支持HTTP、HTTPS协议,推荐使用HTTPS,以下接口地址均为HTTPS协议，若需HTTP协议，自行更改为HTTP协议即可。</li>
+            <li>请求方法用POST</li>
+            <li>请求的body和响应内容统一使用JSON格式，UTF-8编码</li>
+            <li>所有接口使用预共享密钥的认证鉴权方式</li>
+        </ul>
+        <h1>3、鉴权认证</h1>
+        <h2>3.1 介绍</h2>
+        <p>
+            平台采用预共享密钥的方式来进行鉴权认证。即我方和客户侧之间共享spKey密钥，客户侧在发起请求时对请求信息进行签名，然后把构造好的签名放入请求头中，我方在接收到请求信息时采用同样的方式对请求信息进行签名，并根据签名是否一致进行认证
+        </p>
+        <h2>3.2 构造签名</h2>
+        <h3>3.2.1 构造signatue_origin字符串</h3>
+        <p>构造公式如下：</p>
+        <p><span
+                style="color: #e62412">signature_origin=${body_content} + ${timestamp}</span></p>
+        <p>构造参数说明如下：</p>
+        <ul>
+            <li>body_content：请求body中传递的JSON格式的消息体</li>
+            <li>
+                timestamp：当前服务器标准UTC时间毫秒值，,半小时内有效，超时返status:100005</li>
+        </ul>
+        <h3>3.2.2 加密</h3>
+        <p>
+            将signature_origin字符串使用HMAC-SHA256算法（使用我方提供的预共享密钥spKey作为算法的key）计算签名HMAC值，然后对生成的HMAC值进行base64编码即生成最终传递的签名signatue
+        </p>
+        <h3>3.2.3 构造请求头</h3>
+        <p>将生成的签名signatue放入请求头中，格式如下：</p>
+        <p><span style="color: #e62412">Authorization:
+                HMAC-SHA256 ${timestamp},${signature}</span></p>
+        <p>构造参数说明如下：</p>
+        <ul>
+            <li>timestamp：当前时间的毫秒数，例如，在java语言中可
+                System.currentTimeMillis()获取</li>
+            <li>signature：3.2.2中生成的最终签名</li>
+            <li><span style="color: #e62412">注意：HMAC-SHA256
+                    ${timestamp} 之间有个英文空格</span></li>
+        </ul>
+        <div id="duotel"></div>
+            <h1>4、接口列表</h1>
+        <h2>4.1 短信发送接口（单内容多号码）</h2>
+        <h3>4.1.1 描述</h3>
+        <p>支持客户侧单内容多号码的短信发送</p>
+        <h3>4.1.2 请求基本信息</h3>
+        <ul>
+            <li>支持http和https协议</li>
+            <li>请求方法：POST</li>
+            <li>数据传递结构：JSON</li>
+            <li>请求地址：</li>
+            <ul>
+                <li> https://api.wxxsxx.com/sms/send/{spId}
+                </li>
+            </ul>
+            <li>接口统一签名认证</li>
+        </ul>
+        <h3>4.1.3 请求参数</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>参数名称</p>
+                    </td>
+                    <td>
+                        <p>类型</p>
+                    </td>
+                    <td>
+                        <p>是否必须</p>
+                    </td>
+                    <td>
+                        <p>最大长度</p>
+                    </td>
+                    <td>
+                        <p>说明</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>content</p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>必须</p>
+                    </td>
+                    <td>
+                        <p>1005</p>
+                    </td>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #FFFFFF">短信内容，例如： 【线上线下】您的验证码为123456，在10分钟内有效。</span></span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>mobile</p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>必须</p>
+                    </td>
+                    <td>
+                        <p>由数量决定</p>
+                    </td>
+                    <td>
+                        <p>短信号码，多个用“,”分割，号码数量&lt;=10000</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>extCode</p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>可选</p>
+                    </td>
+                    <td>
+                        <p>12</p>
+                    </td>
+                    <td>
+                        <p>扩展码，必须可解析为数字</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>sId</p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>可选</p>
+                    </td>
+                    <td>
+                        <p>64</p>
+                    </td>
+                    <td>
+                        <p>批次号，可用于客户侧按照批次号对短信进行分组</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>sendTime</p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>可选</p>
+                    </td>
+                    <td>
+                        <p>时间戳(long)</p>
+                    </td>
+                    <td>
+                        <p>定时时间的毫秒数，不超过30天，不传或者时间定在5分钟之内都视为即时短信，立马发出去
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>4.1.4 请求示例</h3>
+        <pre
+           ><code>{
+</code><code>    "content" : "【线上线下】您的验证码为123456，在10分钟内有效。",</code><code>    "mobile" : "13800001111,8613955556666,+8613545556666",</code><code>	"extCode" : "123456",</code><code>	"sId" : "123456789abcdefg"</code><code>}</code></pre>
+        <h3>4.1.5 响应示例</h3>
+        <pre
+           ><code>{
+</code><code>    "status" : 0,    // 请求成功，详细代码参考4.8.1
+</code><code>    "msgid" : "8629637681836384963"</code><code>}</code></pre>
+        <p>参数说明</p>
+        <ul>
+            <li>status：状态码</li>
+            <li>msgid：短信唯一编号</li>
+            <li></li>
+        </ul>
+        <div id="status"></div>
+        <h2>4.2 状态报告推送</h2>
+        <h3>4.2.1 描述</h3>
+        <p>平台将短信下发的状态报告推送给客户</p>
+        <h3>4.2.2 推送方式</h3>
+        <ul>
+            <li>POST</li>
+            <li><span style="color: #333333"><span
+                        style="background: #FFFFFF">content-type : application/json</span></span></li>
+            <li>header中按照3.2规范构造签名，客户侧可进行请求鉴权验证</li>
+            <li>客户需提供推送URL</li>
+        </ul>
+        <h3>4.2.3 推送参数</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>参数名称</p>
+                    </td>
+                    <td>
+                        <p>类型</p>
+                    </td>
+                    <td>
+                        <p>是否必须</p>
+                    </td>
+                    <td>
+                        <p>说明</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>status</p>
+                    </td>
+                    <td>
+                        <p>int</p>
+                    </td>
+                    <td>
+                        <p>必须</p>
+                    </td>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #FFFFFF">提交响应状态</span></span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #F8F8F8">result</span></span></p>
+                    </td>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #F8F8F8">JSON Array</span></span></p>
+                    </td>
+                    <td>
+                        <p>必须</p>
+                    </td>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #F8F8F8">状态反馈信息（打包数组)</span></span></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>result参数说明</p>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>参数名称</p>
+                    </td>
+                    <td>
+                        <p>类型</p>
+                    </td>
+                    <td>
+                        <p>是否必须</p>
+                    </td>
+                    <td>
+                        <p>说明</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #FFFFFF">phone</span></span></p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>必须</p>
+                    </td>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #FFFFFF">手机号码</span></span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #F8F8F8">msgid</span></span></p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>必须</p>
+                    </td>
+                    <td>
+                        <p>与提交响应的msgid一致</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #FFFFFF">status</span></span></p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>必须</p>
+                    </td>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #FFFFFF">短信状态</span></span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>fee</p>
+                    </td>
+                    <td>
+                        <p>int</p>
+                    </td>
+                    <td>
+                        <p>必须</p>
+                    </td>
+                    <td>
+                        <p>短信计费条数</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>sId</p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>可选（提交时传才会有）</p>
+                    </td>
+                    <td>
+                        <p>批次号，可用于客户侧按照批次号对短信进行分组</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #F8F8F8">donetime</span></span></p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>必须</p>
+                    </td>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #F8F8F8">短信到达时间，格式：</span></span>yyyyMMddHHmmss
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>4.2.4 推送示例</h3>
+        <pre><code>{
+</code><code>    "status" : 0,                                 // 固定值0
+</code><code>    "result" :
+</code><code>    [
+</code><code>        {
+</code><code>            "phone" : "13921350591",             // 手机号码
+</code><code>            "msgid" : "-8629637681836384963",    // 与提交中的msgid 一致 
+</code><code>            "status" : "DELIVRD" ,               // 短信状态，参考附表2
+</code><code>            "donetime" : "20170816153922",       // 短信到达时间   </code><code>			"fee" : 2,                           // 短信计费条数</code><code>			"sId" : "123456789abcdefg"           // 批次号</code><code>        }
+</code><code>        //这里是数组会有多条，默认最大500条
+，平台可配置</code><code>    ]
+</code><code>}</code></pre>
+        <h3>4.2.5 响应示例</h3>
+        <pre
+           ><code>{</code><code>  "status" : 0,</code><code>  "msg" : "" </code><code>}</code></pre>
+        <p>参数说明</p>
+        <ul>
+            <li>status：状态码，0表示成功，非0表示失败</li>
+        </ul>
+        <p><strong><span
+                    style="color: #e62412">避免重复推送，客户侧正确接收到后请返回成功码0。</span></strong></p>
+        <ul>
+            <li>msg：错误信息</li>
+        </ul>
+        <h3>4.2.6 推送机制</h3>
+        <ul>
+            <li>状态推送默认每次最小1个，最大500个，平台可配置</li>
+            <li>客户反馈正确格式的响应，否则触发重推机制</li>
+            <li>重推机制触发后，以一分钟
+                为间隔重复推送状态，直到收到正确的响应，最大推送5次后停止推送，记录失败日志</li>
+        </ul>
+        <h2>4.3 状态报告主动获取</h2>
+        <h3>4.3.1 描述</h3>
+        <p>平台支持客户主动来获取短信的状态报告，平台对状态报告最大缓存48小时，超过48小时未获取就会丢弃
+        </p>
+        <h3>4.3.2 请求基本信息</h3>
+        <ul>
+            <li>支持http和https协议</li>
+            <li>请求方法：POST</li>
+            <li>数据传递结构：JSON</li>
+            <li>请求地址：
+                https://report.wxxsxx.com/sms/getReport/{spId}</li>
+            <li>接口统一签名认证</li>
+        </ul>
+        <h3>4.3.3 请求参数</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>参数名称</p>
+                    </td>
+                    <td>
+                        <p>类型</p>
+                    </td>
+                    <td>
+                        <p>是否必须</p>
+                    </td>
+                    <td>
+                        <p>说明</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>maxSize</p>
+                    </td>
+                    <td>
+                        <p>int</p>
+                    </td>
+                    <td>
+                        <p>可选</p>
+                    </td>
+                    <td>
+                        <p>默认500，支持范围[10, 1000]，参数超出范围按照默认算</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>4.3.4 请求示例</h3>
+        <pre
+           ><code>{</code><code>	"maxSize" : 100</code><code>}</code></pre>
+        <h3>4.3.5 响应示例</h3>
+        <p>见4.2.4</p>
+        <div id="propelling">  <h2>4.4 上行推送</h2></div>
+      
+        <h3>4.4.1 描述</h3>
+        <p>平台将短信回复的上行推送给客户</p>
+        <h3>4.4.2 推送方式</h3>
+        <ul>
+            <li>POST</li>
+            <li><span style="color: #333333"><span
+                        style="background: #FFFFFF">content-type : application/json</span></span></li>
+            <li>header中按照3.2规范构造签名，客户侧可进行请求鉴权验证</li>
+            <li>客户需提供推送URL</li>
+        </ul>
+        <h3>4.4.3 推送参数</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>参数名称</p>
+                    </td>
+                    <td>
+                        <p>类型</p>
+                    </td>
+                    <td>
+                        <p>是否必须</p>
+                    </td>
+                    <td>
+                        <p>说明</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>status</p>
+                    </td>
+                    <td>
+                        <p>int</p>
+                    </td>
+                    <td>
+                        <p>必须</p>
+                    </td>
+                    <td>
+                        <p>上行<span style="color: #333333"><span
+                                    style="background: #FFFFFF">响应状态</span></span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #F8F8F8">result</span></span></p>
+                    </td>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #F8F8F8">JSON Array</span></span></p>
+                    </td>
+                    <td>
+                        <p>必须</p>
+                    </td>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #F8F8F8">上行回复内容（打包数组)</span></span></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p><span style="color: #333333"><span
+                    style="background: #F8F8F8">result参数说明</span></span></p>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>参数名称</p>
+                    </td>
+                    <td>
+                        <p>类型</p>
+                    </td>
+                    <td>
+                        <p>是否必须</p>
+                    </td>
+                    <td>
+                        <p>说明</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #FFFFFF">phone</span></span></p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>必须</p>
+                    </td>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #FFFFFF">手机号码</span></span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #F8F8F8">extCode</span></span></p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>必须</p>
+                    </td>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #F8F8F8">用户提交短信时候带的extCode</span></span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #FFFFFF">content</span></span></p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>必须</p>
+                    </td>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #FFFFFF">上行内容</span></span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #F8F8F8">receivetime</span></span></p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>必须</p>
+                    </td>
+                    <td>
+                        <p><span style="color: #333333"><span
+                                    style="background: #F8F8F8">短信到达时间，格式：</span></span>yyyyMMddHHmmss
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>sId</p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>可选（提交时传才会有）</p>
+                    </td>
+                    <td>
+                        <p>对应短信提交时的sId</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>msgid</p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>必须</p>
+                    </td>
+                    <td>
+                        <p>对应短信提交时的msgid</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>4.4.4 推送示例</h3>
+        <pre
+           ><code>{ 
+</code><code>    "status" : 0,                             // 固定值0
+</code><code>    "result":
+</code><code>    [
+ </code><code>        {
+</code><code>            "phone" : "13921350591",         // 手机号码
+</code><code>            "extCode" : "682",               // 用户提交短信时候带的extCode
+</code><code>            "content" : "上行回复内容" ,       // 上行内容
+</code><code>            "receivetime" : "20170816153922",// 短信到达时间</code><code>			"sId" : "123456789abcdefg",      // 批次号</code><code>			"msgid" : "-8629637681836384963" // 短信唯一编号</code><code>        }
+</code><code>        // 这里是数组会有多条，默认最大500条
+，平台可配置</code><code>    ]
+</code><code>}</code><code></code></pre>
+        <h3>4.4.5 响应示例</h3>
+        <pre
+           ><code>{</code><code>  "status" : 0,      //状态码  0表示成功，非0表示失败</code><code>  "msg" : ""       // 错误信息</code><code>}</code><code></code></pre>
+        <p>参数说明</p>
+        <ul>
+            <li>status：状态码，0表示成功，非0表示失败</li>
+        </ul>
+        <p><strong><span
+                    style="color: #e62412">避免重复推送，客户侧正确接收到后请返回成功码0。</span></strong></p>
+        <ul>
+            <li>msg：错误信息</li>
+        </ul>
+        <h3>4.4.6 推送机制</h3>
+        <ul>
+            <li>上行推送默认每次最小1个，最大500个，平台可配置</li>
+            <li>客户反馈正确格式的响应，否则触发重推机制</li>
+            <li>重推机制触发后，以一分钟
+                为间隔重复推送状态，直到收到正确的响应，最大推送5次后停止推送，记录失败日志</li>
+        </ul>
+        <h2>4.5 上行主动获取</h2>
+        <h3>4.5.1 描述</h3>
+        <p>平台支持客户主动来获取短信的上行报告，平台对上行报告最大缓存48小时，超过48小时未获取就会丢弃
+        </p>
+        <h3>4.5.2 请求基本信息</h3>
+        <ul>
+            <li>支持http和https协议</li>
+            <li>请求方法：POST</li>
+            <li>数据传递结构：JSON</li>
+            <li>请求地址：
+                https://report.wxxsxx.com/sms/getUpstream/{spId}</li>
+            <li>接口统一签名认证</li>
+        </ul>
+        <h3>4.5.3 请求参数</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>参数名称</p>
+                    </td>
+                    <td>
+                        <p>类型</p>
+                    </td>
+                    <td>
+                        <p>是否必须</p>
+                    </td>
+                    <td>
+                        <p>最大长度</p>
+                    </td>
+                    <td>
+                        <p>说明</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>maxSize</p>
+                    </td>
+                    <td>
+                        <p>int</p>
+                    </td>
+                    <td>
+                        <p>可选</p>
+                    </td>
+                    <td>
+                        <p></p>
+                    </td>
+                    <td>
+                        <p>默认500，支持范围[10, 1000]，参数超出范围按照默认算</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>4.5.4 请求示例</h3>
+        <pre
+           ><code>{</code><code>	"maxSize" : 100</code><code>}</code></pre>
+        <h3>4.5.5 响应示例</h3>
+        <p>见4.4.4</p>
+        <div id="cost">
+            <h2>4.6 预付费账号余额查询</h2>
+        </div>
+        <h3>4.6.1 描述</h3>
+        <p>预付费账号剩余余额查询。</p>
+        <blockquote>
+            <p>推荐使用登陆 【<a
+                    href="https://csr.wxxsxx.com"><u>客户发送平台</u></a>】 在[用户中心/个人资料]模块中扫码绑定微信公众号，后期余额不足时会自动提醒推送。</p>
+        </blockquote>
+        <h3>4.6.2 请求基本信息</h3>
+        <ul>
+            <li>支持http和https协议</li>
+            <li>请求方法：POST</li>
+            <li>数据传递结构：JSON</li>
+            <li>请求地址： https://report.wxxsxx.com/sms/<span
+                    style="color: #333333"><span style="background: #F7F7F7">getBalance</span></span>/{spId}</li>
+            <li>接口统一签名认证</li>
+        </ul>
+        <h3>4.6.3 请求参数</h3>
+        <p>无</p>
+        <h3>4.6.4 请求示例</h3>
+        <p>无</p>
+        <h3>4.6.5 响应示例</h3>
+        <pre
+           ><code>{</code><code>	"status": 0       // 请求成功，详细代码参考4.9.1</code><code>	"result": 10000    //当前余额条数</code><code>}</code></pre>
+        <h2>4.7 获取发送账号日统计</h2>
+        <h3>4.7.1 描述</h3>
+        <p>获取发送账号spId的每日短信发送情况统计</p>
+        <h3>4.7.2 请求基本信息</h3>
+        <ul>
+            <li>支持http和https协议</li>
+            <li>请求方法：POST</li>
+            <li>数据传递结构：JSON</li>
+            <li>请求地址： https://report.wxxsxx.com/sms/<span
+                    style="color: #333333"><span style="background: #F7F7F7">get</span></span><span
+                    style="background: #FFFFFF"><span style="color: #333333">DailyStats</span></span>/{spId}</li>
+            <li>接口统一签名认证</li>
+        </ul>
+        <h3>4.7.3 请求参数</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>参数名称</p>
+                    </td>
+                    <td>
+                        <p>类型</p>
+                    </td>
+                    <td>
+                        <p>是否必须</p>
+                    </td>
+                    <td>
+                        <p>最大长度</p>
+                    </td>
+                    <td>
+                        <p>说明</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>date</p>
+                    </td>
+                    <td>
+                        <p>String</p>
+                    </td>
+                    <td>
+                        <p>必选</p>
+                    </td>
+                    <td>
+                        <p>8</p>
+                    </td>
+                    <td>
+                        <p>日期格式化：yyyyMMdd </p>
+                        <p>示例： 20200101</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>4.7.4 请求示例</h3>
+        <pre
+           ><code>{</code><code>	"date": "20200101"</code><code>}</code></pre>
+        <h3>4.7.5 响应示例</h3>
+        <pre><code>{ 
+</code><code>    "status" : 0,                             // 请求成功，详细代码参考4.8.1
+</code><code>    "result":
+</code><code>	 {
+</code><code>            "spId" : "apiSendUser01",         // 发送账号</code><code>            "date" : 20200101,               // 查询的日期</code><code>            "sendCount" : 1000,               // 提交条数</code><code>            "feeCount" : 1500 ,       // 发送条数</code><code>            "successCount" : 1400,// 成功条数</code><code>			"failCount" : 80,      // 失败条数</code><code>			"exceptionCount" : 0,      // 异常条数</code><code>			"noRespCount" : 20,      // 未反馈条数</code><code>       }
+</code><code>}</code></pre>
+        <h2>4.8 返回错误码参考</h2>
+        <h3>4.8.1 提交或查询status代码表</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>status 代码</p>
+                    </td>
+                    <td>
+                        <p>代码含义</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>0</p>
+                    </td>
+                    <td>
+                        <p>成功</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>100001</p>
+                    </td>
+                    <td>
+                        <p>鉴权失败</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>100002</p>
+                    </td>
+                    <td>
+                        <p>必选参数为空</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>100003</p>
+                    </td>
+                    <td>
+                        <p>参数格式错误</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>100004</p>
+                    </td>
+                    <td>
+                        <p>系统错误</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>100005</p>
+                    </td>
+                    <td>
+                        <p>timestamp过期</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>1001</p>
+                    </td>
+                    <td>
+                        <p>账号不能为空</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>1002</p>
+                    </td>
+                    <td>
+                        <p>账号不合法</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>1003</p>
+                    </td>
+                    <td>
+                        <p>ip不能为空</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>1004</p>
+                    </td>
+                    <td>
+                        <p>ip校验失败</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>1005</p>
+                    </td>
+                    <td>
+                        <p>密码不能为空</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>1006</p>
+                    </td>
+                    <td>
+                        <p>密码错误</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>1007</p>
+                    </td>
+                    <td>
+                        <p>手机号码不能为空或者手机号码位数不正确或者数量过多</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>1008</p>
+                    </td>
+                    <td>
+                        <p>缺少手机参数</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>1009</p>
+                    </td>
+                    <td>
+                        <p>扩展必须为数字</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10010</p>
+                    </td>
+                    <td>
+                        <p>msgid长度限制</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10011</p>
+                    </td>
+                    <td>
+                        <p>内容为空</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10012</p>
+                    </td>
+                    <td>
+                        <p>内容含关键字</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10013</p>
+                    </td>
+                    <td>
+                        <p>内容超过系统支持最大长度</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10014</p>
+                    </td>
+                    <td>
+                        <p>签名超长或为空</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10016</p>
+                    </td>
+                    <td>
+                        <p>余额不足</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10017</p>
+                    </td>
+                    <td>
+                        <p>账号已禁用</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10018</p>
+                    </td>
+                    <td>
+                        <p>该用户此时间段禁止提交</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10019</p>
+                    </td>
+                    <td>
+                        <p>不允许主动获取和主动推送同时调用</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10020</p>
+                    </td>
+                    <td>
+                        <p>打包短信错误</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10021</p>
+                    </td>
+                    <td>
+                        <p>批量短信数量超限</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10022</p>
+                    </td>
+                    <td>
+                        <p>定时短信添加错误</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10023</p>
+                    </td>
+                    <td>
+                        <p>sId过长</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10024</p>
+                    </td>
+                    <td>
+                        <p>定时短信时间异常</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10025</p>
+                    </td>
+                    <td>
+                        <p>国际短信接口不支持国内号码</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10026</p>
+                    </td>
+                    <td>
+                        <p>不支持国际短信</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>4.8.2 状态报告反馈错误代码表</h3>
+        <blockquote>
+            <p>仅针对当前短信发送平台返回的内部反馈代码释义，不在此表中的代表<span
+                    style="color: #333333"><span style="background: #FFFFFF">运营商返回的状态码。</span></span></p>
+        </blockquote>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>代码</p>
+                    </td>
+                    <td>
+                        <p>含义</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>BLACK</p>
+                    </td>
+                    <td>
+                        <p>黑名单</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>NOWAY</p>
+                    </td>
+                    <td>
+                        <p>未匹配通道</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>CHECK</p>
+                    </td>
+                    <td>
+                        <p>审核不通过</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>SIGN</p>
+                    </td>
+                    <td>
+                        <p>签名错误，未报备</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>KEYWORD</p>
+                    </td>
+                    <td>
+                        <p>内容含有非法关键词</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>LIMIT</p>
+                    </td>
+                    <td>
+                        <p>超发限制</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>PHONERR</p>
+                    </td>
+                    <td>
+                        <p>无归属地</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>SWITCH</p>
+                    </td>
+                    <td>
+                        <p>通道切出</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>DELIVRD</p>
+                    </td>
+                    <td>
+                        <p>反馈成功</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>TDBLACK</p>
+                    </td>
+                    <td>
+                        <p>退订黑</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>TSBLACK</p>
+                    </td>
+                    <td>
+                        <p>投诉黑</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>RDBLACK</p>
+                    </td>
+                    <td>
+                        <p>红名单</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>AICHECK</p>
+                    </td>
+                    <td>
+                        <p>智能拦截，一般是发送账号有误</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>INSUFFICIENT_BALANCE</p>
+                    </td>
+                    <td>
+                        <p>余额不足</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>UNDELIV</p>
+                    </td>
+                    <td>
+                        <p>反馈失败</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>TESTER_DELIVRD</p>
+                    </td>
+                    <td>
+                        <p>压测专用码</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>ERRLMSG</p>
+                    </td>
+                    <td>
+                        <p>CMPP长短信异常</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p></p>
+    </div>
+    <!-- <footer>
+        <a href="https://thoughts.teambition.com/" target="_blank">Thoughts</a>
+    </footer> -->
+
+
+</body>
+
+</html>

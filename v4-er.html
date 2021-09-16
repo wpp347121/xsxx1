@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/v4-er.css">
+    <title>云短信开发指南  </title>
+</head>
+
+<body>
+    <div id="page">
+        <div id="title">平台接入协议错误码对照表</div>
+        <h3 data-key="5f2257b06b2ea540738afc8a" data-type="header-three"> HTTP协议提交或查询status代码表</h3>
+        <table data-key="5f2257b06b2ea5d8888afc8b" data-type="table">
+            <tbody>
+                <tr data-key="thoughts-721108" data-type="table-row">
+                    <td data-key="thoughts-721109" data-type="table-cell">
+                        <p data-key="thoughts-721110" data-type="paragraph">status 代码</p>
+                    </td>
+                    <td data-key="thoughts-721111" data-type="table-cell">
+                        <p data-key="thoughts-721112" data-type="paragraph">代码含义</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721113" data-type="table-row">
+                    <td data-key="thoughts-721114" data-type="table-cell">
+                        <p data-key="thoughts-721115" data-type="paragraph">0</p>
+                    </td>
+                    <td data-key="thoughts-721116" data-type="table-cell">
+                        <p data-key="thoughts-721117" data-type="paragraph">成功</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721118" data-type="table-row">
+                    <td data-key="thoughts-721119" data-type="table-cell">
+                        <p data-key="thoughts-721120" data-type="paragraph">100001</p>
+                    </td>
+                    <td data-key="thoughts-721121" data-type="table-cell">
+                        <p data-key="thoughts-721122" data-type="paragraph">鉴权失败</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721123" data-type="table-row">
+                    <td data-key="thoughts-721124" data-type="table-cell">
+                        <p data-key="thoughts-721125" data-type="paragraph">100002</p>
+                    </td>
+                    <td data-key="thoughts-721126" data-type="table-cell">
+                        <p data-key="thoughts-721127" data-type="paragraph">必选参数为空</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721128" data-type="table-row">
+                    <td data-key="thoughts-721129" data-type="table-cell">
+                        <p data-key="thoughts-721130" data-type="paragraph">100003</p>
+                    </td>
+                    <td data-key="thoughts-721131" data-type="table-cell">
+                        <p data-key="thoughts-721132" data-type="paragraph">参数格式错误</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721133" data-type="table-row">
+                    <td data-key="thoughts-721134" data-type="table-cell">
+                        <p data-key="thoughts-721135" data-type="paragraph">100004</p>
+                    </td>
+                    <td data-key="thoughts-721136" data-type="table-cell">
+                        <p data-key="thoughts-721137" data-type="paragraph">系统错误</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721138" data-type="table-row">
+                    <td data-key="thoughts-721139" data-type="table-cell">
+                        <p data-key="thoughts-721140" data-type="paragraph">100005</p>
+                    </td>
+                    <td data-key="thoughts-721141" data-type="table-cell">
+                        <p data-key="thoughts-721142" data-type="paragraph">timestamp过期</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721143" data-type="table-row">
+                    <td data-key="thoughts-721144" data-type="table-cell">
+                        <p data-key="thoughts-721145" data-type="paragraph">1001</p>
+                    </td>
+                    <td data-key="thoughts-721146" data-type="table-cell">
+                        <p data-key="thoughts-721147" data-type="paragraph">账号不能为空</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721148" data-type="table-row">
+                    <td data-key="thoughts-721149" data-type="table-cell">
+                        <p data-key="thoughts-721150" data-type="paragraph">1002</p>
+                    </td>
+                    <td data-key="thoughts-721151" data-type="table-cell">
+                        <p data-key="thoughts-721152" data-type="paragraph">账号不合法</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721153" data-type="table-row">
+                    <td data-key="thoughts-721154" data-type="table-cell">
+                        <p data-key="thoughts-721155" data-type="paragraph">1003</p>
+                    </td>
+                    <td data-key="thoughts-721156" data-type="table-cell">
+                        <p data-key="thoughts-721157" data-type="paragraph">ip不能为空</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721158" data-type="table-row">
+                    <td data-key="thoughts-721159" data-type="table-cell">
+                        <p data-key="thoughts-721160" data-type="paragraph">1004</p>
+                    </td>
+                    <td data-key="thoughts-721161" data-type="table-cell">
+                        <p data-key="thoughts-721162" data-type="paragraph">ip校验失败</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721163" data-type="table-row">
+                    <td data-key="thoughts-721164" data-type="table-cell">
+                        <p data-key="thoughts-721165" data-type="paragraph">1005</p>
+                    </td>
+                    <td data-key="thoughts-721166" data-type="table-cell">
+                        <p data-key="thoughts-721167" data-type="paragraph">密码不能为空</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721168" data-type="table-row">
+                    <td data-key="thoughts-721169" data-type="table-cell">
+                        <p data-key="thoughts-721170" data-type="paragraph">1006</p>
+                    </td>
+                    <td data-key="thoughts-721171" data-type="table-cell">
+                        <p data-key="thoughts-721172" data-type="paragraph">密码错误</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721173" data-type="table-row">
+                    <td data-key="thoughts-721174" data-type="table-cell">
+                        <p data-key="thoughts-721175" data-type="paragraph">1007</p>
+                    </td>
+                    <td data-key="thoughts-721176" data-type="table-cell">
+                        <p data-key="thoughts-721177" data-type="paragraph">手机号码不能为空或者手机号码位数不正确或者数量过多</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721178" data-type="table-row">
+                    <td data-key="thoughts-721179" data-type="table-cell">
+                        <p data-key="thoughts-721180" data-type="paragraph">1008</p>
+                    </td>
+                    <td data-key="thoughts-721181" data-type="table-cell">
+                        <p data-key="thoughts-721182" data-type="paragraph">缺少手机参数</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721183" data-type="table-row">
+                    <td data-key="thoughts-721184" data-type="table-cell">
+                        <p data-key="thoughts-721185" data-type="paragraph">1009</p>
+                    </td>
+                    <td data-key="thoughts-721186" data-type="table-cell">
+                        <p data-key="thoughts-721187" data-type="paragraph">扩展必须为数字</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721188" data-type="table-row">
+                    <td data-key="thoughts-721189" data-type="table-cell">
+                        <p data-key="thoughts-721190" data-type="paragraph">10010</p>
+                    </td>
+                    <td data-key="thoughts-721191" data-type="table-cell">
+                        <p data-key="thoughts-721192" data-type="paragraph">msgid长度限制</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721193" data-type="table-row">
+                    <td data-key="thoughts-721194" data-type="table-cell">
+                        <p data-key="thoughts-721195" data-type="paragraph">10011</p>
+                    </td>
+                    <td data-key="thoughts-721196" data-type="table-cell">
+                        <p data-key="thoughts-721197" data-type="paragraph">内容为空</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721198" data-type="table-row">
+                    <td data-key="thoughts-721199" data-type="table-cell">
+                        <p data-key="thoughts-721200" data-type="paragraph">10012</p>
+                    </td>
+                    <td data-key="thoughts-721201" data-type="table-cell">
+                        <p data-key="thoughts-721202" data-type="paragraph">内容含关键字</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721203" data-type="table-row">
+                    <td data-key="thoughts-721204" data-type="table-cell">
+                        <p data-key="thoughts-721205" data-type="paragraph">10013</p>
+                    </td>
+                    <td data-key="thoughts-721206" data-type="table-cell">
+                        <p data-key="thoughts-721207" data-type="paragraph">内容超过系统支持最大长度</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721208" data-type="table-row">
+                    <td data-key="thoughts-721209" data-type="table-cell">
+                        <p data-key="thoughts-721210" data-type="paragraph">10014</p>
+                    </td>
+                    <td data-key="thoughts-721211" data-type="table-cell">
+                        <p data-key="thoughts-721212" data-type="paragraph">签名超长或为空</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721213" data-type="table-row">
+                    <td data-key="thoughts-721214" data-type="table-cell">
+                        <p data-key="thoughts-721215" data-type="paragraph">10016</p>
+                    </td>
+                    <td data-key="thoughts-721216" data-type="table-cell">
+                        <p data-key="thoughts-721217" data-type="paragraph">余额不足</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721218" data-type="table-row">
+                    <td data-key="thoughts-721219" data-type="table-cell">
+                        <p data-key="thoughts-721220" data-type="paragraph">10017</p>
+                    </td>
+                    <td data-key="thoughts-721221" data-type="table-cell">
+                        <p data-key="thoughts-721222" data-type="paragraph">账号已禁用</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721223" data-type="table-row">
+                    <td data-key="thoughts-721224" data-type="table-cell">
+                        <p data-key="thoughts-721225" data-type="paragraph">10018</p>
+                    </td>
+                    <td data-key="thoughts-721226" data-type="table-cell">
+                        <p data-key="thoughts-721227" data-type="paragraph">该用户此时间段禁止提交</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721228" data-type="table-row">
+                    <td data-key="thoughts-721229" data-type="table-cell">
+                        <p data-key="thoughts-721230" data-type="paragraph">10019</p>
+                    </td>
+                    <td data-key="thoughts-721231" data-type="table-cell">
+                        <p data-key="thoughts-721232" data-type="paragraph">不允许主动获取和主动推送同时调用</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721233" data-type="table-row">
+                    <td data-key="thoughts-721234" data-type="table-cell">
+                        <p data-key="thoughts-721235" data-type="paragraph">10020</p>
+                    </td>
+                    <td data-key="thoughts-721236" data-type="table-cell">
+                        <p data-key="thoughts-721237" data-type="paragraph">打包短信错误</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721238" data-type="table-row">
+                    <td data-key="thoughts-721239" data-type="table-cell">
+                        <p data-key="thoughts-721240" data-type="paragraph">10021</p>
+                    </td>
+                    <td data-key="thoughts-721241" data-type="table-cell">
+                        <p data-key="thoughts-721242" data-type="paragraph">批量短信数量超限</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721243" data-type="table-row">
+                    <td data-key="thoughts-721244" data-type="table-cell">
+                        <p data-key="thoughts-721245" data-type="paragraph">10022</p>
+                    </td>
+                    <td data-key="thoughts-721246" data-type="table-cell">
+                        <p data-key="thoughts-721247" data-type="paragraph">定时短信添加错误</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721248" data-type="table-row">
+                    <td data-key="thoughts-721249" data-type="table-cell">
+                        <p data-key="thoughts-721250" data-type="paragraph">10023</p>
+                    </td>
+                    <td data-key="thoughts-721251" data-type="table-cell">
+                        <p data-key="thoughts-721252" data-type="paragraph">sId过长</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721253" data-type="table-row">
+                    <td data-key="thoughts-721254" data-type="table-cell">
+                        <p data-key="thoughts-721255" data-type="paragraph">10024</p>
+                    </td>
+                    <td data-key="thoughts-721256" data-type="table-cell">
+                        <p data-key="thoughts-721257" data-type="paragraph">定时短信时间异常</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721258" data-type="table-row">
+                    <td data-key="thoughts-721259" data-type="table-cell">
+                        <p data-key="thoughts-721260" data-type="paragraph">10025</p>
+                    </td>
+                    <td data-key="thoughts-721261" data-type="table-cell">
+                        <p data-key="thoughts-721262" data-type="paragraph">国际短信接口不支持国内号码</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721263" data-type="table-row">
+                    <td data-key="thoughts-721264" data-type="table-cell">
+                        <p data-key="thoughts-721265" data-type="paragraph">10026</p>
+                    </td>
+                    <td data-key="thoughts-721266" data-type="table-cell">
+                        <p data-key="thoughts-721267" data-type="paragraph">不支持国际短信</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div  id="cmpp">
+            <p data-key="5f2257b06b2ea5b7a38afc8c" data-type="paragraph"></p>
+        </div>
+     
+        <h3 data-key="5f2257b06b2ea56c5c8afc8d" data-type="header-three">CMPP协议提交错误代码表</h3>
+        <table data-key="5f2257b06b2ea53a4d8afc8e" data-type="table">
+            <tbody>
+                <tr data-key="thoughts-721268" data-type="table-row">
+                    <td data-key="thoughts-721269" data-type="table-cell">
+                        <p data-key="thoughts-721270" data-type="paragraph">status 代码</p>
+                    </td>
+                    <td data-key="thoughts-721271" data-type="table-cell">
+                        <p data-key="thoughts-721272" data-type="paragraph">代码含义</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721273" data-type="table-row">
+                    <td data-key="thoughts-721274" data-type="table-cell">
+                        <p data-key="thoughts-721275" data-type="paragraph">0</p>
+                    </td>
+                    <td data-key="thoughts-721276" data-type="table-cell">
+                        <p data-key="thoughts-721277" data-type="paragraph">成功</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721278" data-type="table-row">
+                    <td data-key="thoughts-721279" data-type="table-cell">
+                        <p data-key="thoughts-721280" data-type="paragraph">1</p>
+                    </td>
+                    <td data-key="thoughts-721281" data-type="table-cell">
+                        <p data-key="thoughts-721282" data-type="paragraph">消息结构错</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721283" data-type="table-row">
+                    <td data-key="thoughts-721284" data-type="table-cell">
+                        <p data-key="thoughts-721285" data-type="paragraph">2</p>
+                    </td>
+                    <td data-key="thoughts-721286" data-type="table-cell">
+                        <p data-key="thoughts-721287" data-type="paragraph">非法源地址</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721288" data-type="table-row">
+                    <td data-key="thoughts-721289" data-type="table-cell">
+                        <p data-key="thoughts-721290" data-type="paragraph">3</p>
+                    </td>
+                    <td data-key="thoughts-721291" data-type="table-cell">
+                        <p data-key="thoughts-721292" data-type="paragraph">认证错</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721293" data-type="table-row">
+                    <td data-key="thoughts-721294" data-type="table-cell">
+                        <p data-key="thoughts-721295" data-type="paragraph">4</p>
+                    </td>
+                    <td data-key="thoughts-721296" data-type="table-cell">
+                        <p data-key="thoughts-721297" data-type="paragraph">版本太高</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721298" data-type="table-row">
+                    <td data-key="thoughts-721299" data-type="table-cell">
+                        <p data-key="thoughts-721300" data-type="paragraph">8</p>
+                    </td>
+                    <td data-key="thoughts-721301" data-type="table-cell">
+                        <p data-key="thoughts-721302" data-type="paragraph">流量控制错</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721303" data-type="table-row">
+                    <td data-key="thoughts-721304" data-type="table-cell">
+                        <p data-key="thoughts-721305" data-type="paragraph">12</p>
+                    </td>
+                    <td data-key="thoughts-721306" data-type="table-cell">
+                        <p data-key="thoughts-721307" data-type="paragraph">超过最大连接数</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721308" data-type="table-row">
+                    <td data-key="thoughts-721309" data-type="table-cell">
+                        <p data-key="thoughts-721310" data-type="paragraph">20</p>
+                    </td>
+                    <td data-key="thoughts-721311" data-type="table-cell">
+                        <p data-key="thoughts-721312" data-type="paragraph">信息格式错</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721313" data-type="table-row">
+                    <td data-key="thoughts-721314" data-type="table-cell">
+                        <p data-key="thoughts-721315" data-type="paragraph">151</p>
+                    </td>
+                    <td data-key="thoughts-721316" data-type="table-cell">
+                        <p data-key="thoughts-721317" data-type="paragraph">签名错误</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721318" data-type="table-row">
+                    <td data-key="thoughts-721319" data-type="table-cell">
+                        <p data-key="thoughts-721320" data-type="paragraph">152</p>
+                    </td>
+                    <td data-key="thoughts-721321" data-type="table-cell">
+                        <p data-key="thoughts-721322" data-type="paragraph">短信超长</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721323" data-type="table-row">
+                    <td data-key="thoughts-721324" data-type="table-cell">
+                        <p data-key="thoughts-721325" data-type="paragraph">153</p>
+                    </td>
+                    <td data-key="thoughts-721326" data-type="table-cell">
+                        <p data-key="thoughts-721327" data-type="paragraph">没有Submit响应</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721328" data-type="table-row">
+                    <td data-key="thoughts-721329" data-type="table-cell">
+                        <p data-key="thoughts-721330" data-type="paragraph">154</p>
+                    </td>
+                    <td data-key="thoughts-721331" data-type="table-cell">
+                        <p data-key="thoughts-721332" data-type="paragraph">手机号不正确</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721333" data-type="table-row">
+                    <td data-key="thoughts-721334" data-type="table-cell">
+                        <p data-key="thoughts-721335" data-type="paragraph">155</p>
+                    </td>
+                    <td data-key="thoughts-721336" data-type="table-cell">
+                        <p data-key="thoughts-721337" data-type="paragraph">不支持群发</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721338" data-type="table-row">
+                    <td data-key="thoughts-721339" data-type="table-cell">
+                        <p data-key="thoughts-721340" data-type="paragraph">156</p>
+                    </td>
+                    <td data-key="thoughts-721341" data-type="table-cell">
+                        <p data-key="thoughts-721342" data-type="paragraph">通道和扩展必须为数字</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721343" data-type="table-row">
+                    <td data-key="thoughts-721344" data-type="table-cell">
+                        <p data-key="thoughts-721345" data-type="paragraph">160</p>
+                    </td>
+                    <td data-key="thoughts-721346" data-type="table-cell">
+                        <p data-key="thoughts-721347" data-type="paragraph">用户不存在</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721348" data-type="table-row">
+                    <td data-key="thoughts-721349" data-type="table-cell">
+                        <p data-key="thoughts-721350" data-type="paragraph">161</p>
+                    </td>
+                    <td data-key="thoughts-721351" data-type="table-cell">
+                        <p data-key="thoughts-721352" data-type="paragraph">账号已禁用</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721353" data-type="table-row">
+                    <td data-key="thoughts-721354" data-type="table-cell">
+                        <p data-key="thoughts-721355" data-type="paragraph">162</p>
+                    </td>
+                    <td data-key="thoughts-721356" data-type="table-cell">
+                        <p data-key="thoughts-721357" data-type="paragraph">余额不足</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721358" data-type="table-row">
+                    <td data-key="thoughts-721359" data-type="table-cell">
+                        <p data-key="thoughts-721360" data-type="paragraph">163</p>
+                    </td>
+                    <td data-key="thoughts-721361" data-type="table-cell">
+                        <p data-key="thoughts-721362" data-type="paragraph">该用户此时间段禁止提交</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p data-key="5f2257b06b2ea57a658afc8f" data-type="paragraph"></p>
+        <h3 data-key="5f2259186b2ea5ab288afdbb" data-type="header-three">状态报告反馈错误代码表</h3>
+        <blockquote data-key="5f2259186b2ea5eb288afdbc" data-type="blockquote-wrapper">
+            <p data-key="thoughts-721363" data-type="blockquote">仅针对当前短信发送平台返回的内部反馈代码释义，不在此表中的代表<span
+                    style="color: #333333"><span style="background: #FFFFFF">运营商返回的状态码。</span></span></p>
+        </blockquote>
+        <table data-key="5f2259186b2ea545f08afdbd" data-type="table">
+            <tbody>
+                <tr data-key="thoughts-721364" data-type="table-row">
+                    <td data-key="thoughts-721365" data-type="table-cell">
+                        <p data-key="thoughts-721366" data-type="paragraph">代码</p>
+                    </td>
+                    <td data-key="thoughts-721367" data-type="table-cell">
+                        <p data-key="thoughts-721368" data-type="paragraph">含义</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721369" data-type="table-row">
+                    <td data-key="thoughts-721370" data-type="table-cell">
+                        <p data-key="thoughts-721371" data-type="paragraph">BLACK</p>
+                    </td>
+                    <td data-key="thoughts-721372" data-type="table-cell">
+                        <p data-key="thoughts-721373" data-type="paragraph">黑名单</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721374" data-type="table-row">
+                    <td data-key="thoughts-721375" data-type="table-cell">
+                        <p data-key="thoughts-721376" data-type="paragraph">NOWAY</p>
+                    </td>
+                    <td data-key="thoughts-721377" data-type="table-cell">
+                        <p data-key="thoughts-721378" data-type="paragraph">未匹配通道</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721379" data-type="table-row">
+                    <td data-key="thoughts-721380" data-type="table-cell">
+                        <p data-key="thoughts-721381" data-type="paragraph">CHECK</p>
+                    </td>
+                    <td data-key="thoughts-721382" data-type="table-cell">
+                        <p data-key="thoughts-721383" data-type="paragraph">审核不通过</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721384" data-type="table-row">
+                    <td data-key="thoughts-721385" data-type="table-cell">
+                        <p data-key="thoughts-721386" data-type="paragraph">SIGN</p>
+                    </td>
+                    <td data-key="thoughts-721387" data-type="table-cell">
+                        <p data-key="thoughts-721388" data-type="paragraph">签名错误，未报备</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721389" data-type="table-row">
+                    <td data-key="thoughts-721390" data-type="table-cell">
+                        <p data-key="thoughts-721391" data-type="paragraph">KEYWORD</p>
+                    </td>
+                    <td data-key="thoughts-721392" data-type="table-cell">
+                        <p data-key="thoughts-721393" data-type="paragraph">内容含有非法关键词</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721394" data-type="table-row">
+                    <td data-key="thoughts-721395" data-type="table-cell">
+                        <p data-key="thoughts-721396" data-type="paragraph">LIMIT</p>
+                    </td>
+                    <td data-key="thoughts-721397" data-type="table-cell">
+                        <p data-key="thoughts-721398" data-type="paragraph">超发限制</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721399" data-type="table-row">
+                    <td data-key="thoughts-721400" data-type="table-cell">
+                        <p data-key="thoughts-721401" data-type="paragraph">PHONERR</p>
+                    </td>
+                    <td data-key="thoughts-721402" data-type="table-cell">
+                        <p data-key="thoughts-721403" data-type="paragraph">无归属地</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721404" data-type="table-row">
+                    <td data-key="thoughts-721405" data-type="table-cell">
+                        <p data-key="thoughts-721406" data-type="paragraph">SWITCH</p>
+                    </td>
+                    <td data-key="thoughts-721407" data-type="table-cell">
+                        <p data-key="thoughts-721408" data-type="paragraph">通道切出</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721409" data-type="table-row">
+                    <td data-key="thoughts-721410" data-type="table-cell">
+                        <p data-key="thoughts-721411" data-type="paragraph">DELIVRD</p>
+                    </td>
+                    <td data-key="thoughts-721412" data-type="table-cell">
+                        <p data-key="thoughts-721413" data-type="paragraph">反馈成功</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721414" data-type="table-row">
+                    <td data-key="thoughts-721415" data-type="table-cell">
+                        <p data-key="thoughts-721416" data-type="paragraph">TDBLACK</p>
+                    </td>
+                    <td data-key="thoughts-721417" data-type="table-cell">
+                        <p data-key="thoughts-721418" data-type="paragraph">退订黑</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721419" data-type="table-row">
+                    <td data-key="thoughts-721420" data-type="table-cell">
+                        <p data-key="thoughts-721421" data-type="paragraph">TSBLACK</p>
+                    </td>
+                    <td data-key="thoughts-721422" data-type="table-cell">
+                        <p data-key="thoughts-721423" data-type="paragraph">投诉黑</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721424" data-type="table-row">
+                    <td data-key="thoughts-721425" data-type="table-cell">
+                        <p data-key="thoughts-721426" data-type="paragraph">RDBLACK</p>
+                    </td>
+                    <td data-key="thoughts-721427" data-type="table-cell">
+                        <p data-key="thoughts-721428" data-type="paragraph">红名单</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721429" data-type="table-row">
+                    <td data-key="thoughts-721430" data-type="table-cell">
+                        <p data-key="thoughts-721431" data-type="paragraph">AICHECK</p>
+                    </td>
+                    <td data-key="thoughts-721432" data-type="table-cell">
+                        <p data-key="thoughts-721433" data-type="paragraph">智能拦截，一般是发送账号有误</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721434" data-type="table-row">
+                    <td data-key="thoughts-721435" data-type="table-cell">
+                        <p data-key="thoughts-721436" data-type="paragraph">INSUFFICIENT_BALANCE</p>
+                    </td>
+                    <td data-key="thoughts-721437" data-type="table-cell">
+                        <p data-key="thoughts-721438" data-type="paragraph">余额不足</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721439" data-type="table-row">
+                    <td data-key="thoughts-721440" data-type="table-cell">
+                        <p data-key="thoughts-721441" data-type="paragraph">UNDELIV</p>
+                    </td>
+                    <td data-key="thoughts-721442" data-type="table-cell">
+                        <p data-key="thoughts-721443" data-type="paragraph">反馈失败</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721444" data-type="table-row">
+                    <td data-key="thoughts-721445" data-type="table-cell">
+                        <p data-key="thoughts-721446" data-type="paragraph">TESTER_DELIVRD</p>
+                    </td>
+                    <td data-key="thoughts-721447" data-type="table-cell">
+                        <p data-key="thoughts-721448" data-type="paragraph">压测专用码</p>
+                    </td>
+                </tr>
+                <tr data-key="thoughts-721449" data-type="table-row">
+                    <td data-key="thoughts-721450" data-type="table-cell">
+                        <p data-key="thoughts-721451" data-type="paragraph">ERRLMSG</p>
+                    </td>
+                    <td data-key="thoughts-721452" data-type="table-cell">
+                        <p data-key="thoughts-721453" data-type="paragraph">CMPP长短信异常</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p data-key="5f2259186b2ea5d5958afdbe" data-type="paragraph"></p>
+    </div>
+
+    <!-- <footer>
+        <a href="https://thoughts.teambition.com/" target="_blank">Thoughts</a>
+    </footer>
+ -->
+
+</body>
+
+</html>
