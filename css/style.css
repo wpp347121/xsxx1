@@ -288,6 +288,9 @@
     .product-prop-nav-li {
         width: 79%;
     }
+    .msg h2{
+        font-size: 9vw !important;
+    }
 }
 
 @media screen and (min-width:375px) {
@@ -901,7 +904,7 @@ canvas {
 }
 
 .index-product-patent div:nth-child(6) img {
-    margin: 0 0 2% 20%;
+    margin: 2% 0 2% 20%;
 }
 
 .index-product-patent div span {
@@ -2744,7 +2747,7 @@ input {
 }
 .investor-news {
     margin-top: 48px;
-    width: 714px;
+    width: 668px;
     height: 461px;
     opacity: 1;
     background: #fafafa;
@@ -2792,7 +2795,7 @@ input {
     font-size: 16px;
 }
 .investor-status{
-    margin-top: 80px;
+    margin-top: 60px;
 }
 .investor-notice{
     float: left;
